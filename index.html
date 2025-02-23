@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-white">
+<body class="bg-gradient-to-br from-white to-gray-100">
     <div id="gentevra-size-assistant" class="p-4 max-w-md mx-auto"></div>
 
     <script>
@@ -15,20 +15,20 @@
         const sizeAssistant = document.getElementById('gentevra-size-assistant');
         
         sizeAssistant.innerHTML = `
-            <div class="bg-white shadow-2xl rounded-3xl p-6 transition-transform transform hover:scale-105 backdrop-blur-md bg-opacity-80">
+            <div class="bg-white shadow-2xl rounded-3xl p-6 backdrop-blur-md bg-opacity-80 transition-all hover:shadow-3xl">
                 <div class="flex items-center mb-4">
-                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
+                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent" speed="1" style="width: 60px; height: 60px;" loop autoplay></lottie-player>
                     <h2 class="text-2xl font-extrabold text-gray-800 ml-3">Gentevra Size Assistant</h2>
                 </div>
                 <p class="mb-4 text-sm text-gray-600">Find your perfect fit with our AI-powered size assistant!</p>
 
                 <div class="grid grid-cols-1 gap-3 mb-4">
-                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
+                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
                         <option value="">Gender</option>
                         <option value="male">Men</option>
                         <option value="female">Women</option>
                     </select>
-                    <select id="productType" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
+                    <select id="productType" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
                         <option value="">Product Type</option>
                         <option value="shirt">Shirt</option>
                         <option value="pants">Pants</option>
@@ -44,14 +44,14 @@
                         <option value="suit">Suit</option>
                         <option value="accessory">Accessory</option>
                     </select>
-                    <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
-                    <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
-                    <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
-                    <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-white bg-opacity-60 shadow-sm">
+                    <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                    <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                    <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                    <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
                 </div>
 
-                <button onclick="recommendSize()" class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 rounded-md text-sm font-semibold hover:from-green-500 hover:to-blue-600 transition-all">
-                    Calculate My Size
+                <button onclick="recommendSize()" class="w-full bg-green-600 text-white py-2 rounded-md text-sm font-semibold hover:bg-green-700 transition-all">
+                    Get My Perfect Size
                 </button>
 
                 <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-green-600"></p>
