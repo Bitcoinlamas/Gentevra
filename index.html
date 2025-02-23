@@ -8,7 +8,7 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body class="bg-gradient-to-br from-white to-gray-50">
-    <div id="gentevra-size-assistant" class="fixed bottom-4 right-4 z-50 p-2 max-w-xs w-64 bg-white shadow-xl rounded-3xl backdrop-blur-md bg-opacity-95 transition-transform transform hover:scale-105"></div>
+    <div id="gentevra-size-assistant" class="fixed bottom-4 right-4 z-50 p-2 max-w-xs w-64 bg-white shadow-xl rounded-3xl backdrop-blur-md bg-opacity-95 transition-transform transform hover:scale-105 cursor-move"></div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -62,6 +62,32 @@
                 <p id="personalizedAdvice" class="mt-1 text-xs font-medium text-gray-700"></p>
             </div>
         `;
+
+        // Drag & Drop Functionality
+        sizeAssistant.onmousedown = function(event) {
+            let shiftX = event.clientX - sizeAssistant.getBoundingClientRect().left;
+            let shiftY = event.clientY - sizeAssistant.getBoundingClientRect().top;
+
+            function moveAt(pageX, pageY) {
+                sizeAssistant.style.left = pageX - shiftX + 'px';
+                sizeAssistant.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+
+            sizeAssistant.onmouseup = function() {
+                document.removeEventListener('mousemove', onMouseMove);
+                sizeAssistant.onmouseup = null;
+            };
+        };
+
+        sizeAssistant.ondragstart = function() {
+            return false;
+        };
 
         window.showProductSelection = function() {
             document.getElementById('productSelection').classList.remove('hidden');
