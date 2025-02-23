@@ -44,6 +44,7 @@
                             <option value="skirt">🩳 Skirt</option>
                             <option value="blouse">👚 Blouse</option>
                             <option value="suit">🤵 Suit</option>
+                            <option value="accessory">🎒 Accessory</option>
                         </select>
                     </div>
 
@@ -72,12 +73,19 @@
             const productType = document.getElementById('productType').value;
             const sizeFields = document.getElementById('sizeFields');
 
-            sizeFields.classList.add('hidden');
+            sizeFields.querySelectorAll('input').forEach(el => el.parentElement.classList.add('hidden'));
+
             if (productType === 'shoes') {
                 sizeFields.querySelector('#shoeSize').parentElement.classList.remove('hidden');
+            } else if (productType === 'accessory') {
+                // No size fields needed for accessories
+                sizeFields.classList.add('hidden');
             } else {
-                sizeFields.querySelectorAll('input').forEach(el => el.parentElement.classList.remove('hidden'));
+                sizeFields.querySelector('#bust').parentElement.classList.remove('hidden');
+                sizeFields.querySelector('#waist').parentElement.classList.remove('hidden');
+                sizeFields.querySelector('#hips').parentElement.classList.remove('hidden');
             }
+
             sizeFields.classList.remove('hidden');
         }
     });
