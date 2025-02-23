@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentevra Size Assistant</title>
+</head>
+<body>
+    <div id="gentevra-size-assistant" class="p-4 bg-white rounded-2xl shadow-md"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sizeAssistant = document.getElementById('gentevra-size-assistant');
+        
+        sizeAssistant.innerHTML = `
+            <h2 class="text-2xl font-bold mb-4">Gentevra International Size & Style Assistant</h2>
+            <p class="mb-4 text-gray-600">Select your measurements and preferences to find the perfect size and receive personalized style advice.</p>
+            <div class="grid gap-4 mb-4">
+                <input type="text" placeholder="Height in cm" id="height" class="border p-2 rounded w-full">
+                <input type="text" placeholder="Weight in kg" id="weight" class="border p-2 rounded w-full">
+                <input type="text" placeholder="Bust in cm" id="bust" class="border p-2 rounded w-full">
+                <input type="text" placeholder="Waist in cm" id="waist" class="border p-2 rounded w-full">
+                <input type="text" placeholder="Hips in cm" id="hips" class="border p-2 rounded w-full">
+                <input type="text" placeholder="Age" id="age" class="border p-2 rounded w-full">
+
+                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white p-2 rounded-lg">
+                    Recommend Size & Style
+                </button>
+                
+                <p id="sizeRecommendation" class="mt-4 text-lg font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-2 text-base font-medium text-blue-500"></p>
+            </div>
+
+            <h3 class="text-xl font-bold mt-8">Size Chart</h3>
+            <img src="https://via.placeholder.com/400x300?text=Sample+Size+Chart" alt="Sample Size Chart" class="my-4">
+            <p class="text-gray-600">Use this chart as a reference to match your measurements with international standard sizes.</p>
+        `;
+
+        window.recommendSize = function() {
+            const height = parseInt(document.getElementById('height').value);
+            const weight = parseInt(document.getElementById('weight').value);
+            const age = parseInt(document.getElementById('age').value);
+
+            let size = 'M';
+            if (height + weight > 200) {
+                size = 'L';
+            } else if (height + weight < 150) {
+                size = 'S';
+            }
+            
+            document.getElementById('sizeRecommendation').innerText = `Recommended Size: ${size} (EU Standard)`;
+            document.getElementById('personalizedAdvice').innerText = 
+                `For your style, we recommend cuts that suit your body shape.`;
+        }
+    });
+    </script>
+</body>
+</html>
