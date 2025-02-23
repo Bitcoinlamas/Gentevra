@@ -4,55 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gentevra Size Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div id="gentevra-size-assistant" class="p-4 bg-white rounded-2xl shadow-md"></div>
+<body class="bg-gray-50">
+    <div id="gentevra-size-assistant" class="p-6 max-w-4xl mx-auto"></div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const sizeAssistant = document.getElementById('gentevra-size-assistant');
         
         sizeAssistant.innerHTML = `
-            <h2 class="text-2xl font-bold mb-4">Gentevra International Size & Style Assistant</h2>
-            <p class="mb-4 text-gray-600">Select your measurements and preferences to find the perfect size and receive personalized style advice.</p>
-            <div class="grid gap-4 mb-4">
-                <input type="text" placeholder="Height in cm" id="height" class="border p-2 rounded w-full">
-                <input type="text" placeholder="Weight in kg" id="weight" class="border p-2 rounded w-full">
-                <input type="text" placeholder="Bust in cm" id="bust" class="border p-2 rounded w-full">
-                <input type="text" placeholder="Waist in cm" id="waist" class="border p-2 rounded w-full">
-                <input type="text" placeholder="Hips in cm" id="hips" class="border p-2 rounded w-full">
-                <input type="text" placeholder="Age" id="age" class="border p-2 rounded w-full">
+            <div class="bg-white shadow-lg rounded-2xl p-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Gentevra Modern Size & Style Assistant</h2>
+                <p class="mb-6 text-gray-600">Get personalized size and style recommendations with our advanced fashion assistant.</p>
 
-                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white p-2 rounded-lg">
-                    Recommend Size & Style
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-3 rounded-lg w-full">
+                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-3 rounded-lg w-full">
+                    <input type="text" placeholder="Bust (cm)" id="bust" class="border border-gray-300 p-3 rounded-lg w-full">
+                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-3 rounded-lg w-full">
+                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-3 rounded-lg w-full">
+                    <input type="text" placeholder="Age" id="age" class="border border-gray-300 p-3 rounded-lg w-full">
+                </div>
+
+                <button onclick="recommendSize()" class="w-full mt-6 bg-gradient-to-r from-green-400 to-blue-500 text-white py-3 rounded-lg shadow-md hover:from-green-500 hover:to-blue-600 transition-all">
+                    Get Size & Style Recommendation
                 </button>
-                
-                <p id="sizeRecommendation" class="mt-4 text-lg font-semibold text-green-600"></p>
-                <p id="personalizedAdvice" class="mt-2 text-base font-medium text-blue-500"></p>
-            </div>
 
-            <h3 class="text-xl font-bold mt-8">Size Chart</h3>
-            <img src="https://via.placeholder.com/400x300?text=Sample+Size+Chart" alt="Sample Size Chart" class="my-4">
-            <p class="text-gray-600">Use this chart as a reference to match your measurements with international standard sizes.</p>
+                <p id="sizeRecommendation" class="mt-6 text-2xl font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-2 text-lg font-medium text-blue-500"></p>
+
+                <h3 class="text-2xl font-bold mt-10 mb-4">Size Chart</h3>
+                <img src="https://via.placeholder.com/600x400?text=Modern+Size+Chart" alt="Modern Size Chart" class="rounded-lg shadow-md">
+                <p class="text-gray-600 mt-4">Use this chart as a reference to match your measurements with international standard sizes.</p>
+            </div>
         `;
 
         window.recommendSize = function() {
             const height = parseInt(document.getElementById('height').value);
             const weight = parseInt(document.getElementById('weight').value);
+            const bust = parseInt(document.getElementById('bust').value);
+            const waist = parseInt(document.getElementById('waist').value);
+            const hips = parseInt(document.getElementById('hips').value);
             const age = parseInt(document.getElementById('age').value);
 
             let size = 'M';
-            if (height + weight > 200) {
+            if (height + weight + bust + waist + hips > 400) {
                 size = 'L';
-            } else if (height + weight < 150) {
+            } else if (height + weight + bust + waist + hips < 300) {
                 size = 'S';
             }
             
             document.getElementById('sizeRecommendation').innerText = `Recommended Size: ${size} (EU Standard)`;
             document.getElementById('personalizedAdvice').innerText = 
-                `For your style, we recommend cuts that suit your body shape.`;
+                `Based on your measurements, we recommend styles that enhance your body shape.`;
         }
     });
     </script>
+
 </body>
 </html>
