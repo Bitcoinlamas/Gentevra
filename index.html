@@ -23,31 +23,36 @@
                 <p class="mb-4 text-sm text-gray-600">Find your perfect fit with our AI-powered size assistant!</p>
 
                 <div class="grid grid-cols-1 gap-3 mb-4">
-                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
-                        <option value="">Gender</option>
+                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm" onchange="showProductSelection()">
+                        <option value="">Select Gender</option>
                         <option value="male">Men</option>
                         <option value="female">Women</option>
                     </select>
-                    <select id="productType" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
-                        <option value="">Product Type</option>
-                        <option value="shirt">Shirt</option>
-                        <option value="pants">Pants</option>
-                        <option value="dress">Dress</option>
-                        <option value="coat">Coat</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="jacket">Jacket</option>
-                        <option value="cardigan">Cardigan</option>
-                        <option value="polo">Poloshirt</option>
-                        <option value="jeans">Jeans</option>
-                        <option value="skirt">Skirt</option>
-                        <option value="blouse">Blouse</option>
-                        <option value="suit">Suit</option>
-                        <option value="accessory">Accessory</option>
-                    </select>
-                    <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
-                    <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
-                    <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
-                    <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+
+                    <div id="productSelection" class="hidden">
+                        <select id="productType" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm" onchange="showSizeFields()">
+                            <option value="">Select Product Type</option>
+                            <option value="shirt">Shirt</option>
+                            <option value="pants">Pants</option>
+                            <option value="dress">Dress</option>
+                            <option value="coat">Coat</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="jacket">Jacket</option>
+                            <option value="cardigan">Cardigan</option>
+                            <option value="polo">Poloshirt</option>
+                            <option value="jeans">Jeans</option>
+                            <option value="skirt">Skirt</option>
+                            <option value="blouse">Blouse</option>
+                            <option value="suit">Suit</option>
+                        </select>
+                    </div>
+
+                    <div id="sizeFields" class="hidden grid grid-cols-1 gap-2">
+                        <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                        <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                        <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                        <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-gray-50 shadow-sm">
+                    </div>
                 </div>
 
                 <button onclick="recommendSize()" class="w-full bg-green-600 text-white py-2 rounded-md text-sm font-semibold hover:bg-green-700 transition-all">
@@ -59,40 +64,21 @@
             </div>
         `;
 
-        window.recommendSize = function() {
-            const gender = document.getElementById('gender').value;
+        window.showProductSelection = function() {
+            document.getElementById('productSelection').classList.remove('hidden');
+        }
+
+        window.showSizeFields = function() {
             const productType = document.getElementById('productType').value;
-            const bust = parseInt(document.getElementById('bust').value);
-            const waist = parseInt(document.getElementById('waist').value);
-            const hips = parseInt(document.getElementById('hips').value);
-            const shoeSize = parseInt(document.getElementById('shoeSize').value);
+            const sizeFields = document.getElementById('sizeFields');
 
-            let size = 'M';
+            sizeFields.classList.add('hidden');
             if (productType === 'shoes') {
-                size = `EU ${shoeSize}, US ${shoeSize - 33}, UK ${shoeSize - 34}`;
-            } else if (bust <= 80 && waist <= 60 && hips <= 86) {
-                size = 'XXS';
-            } else if (bust <= 84 && waist <= 64 && hips <= 90) {
-                size = 'XS';
-            } else if (bust <= 88 && waist <= 68 && hips <= 94) {
-                size = 'S';
-            } else if (bust <= 94 && waist <= 74 && hips <= 100) {
-                size = 'M';
-            } else if (bust <= 102 && waist <= 82 && hips <= 108) {
-                size = 'L';
-            } else if (bust <= 110 && waist <= 90 && hips <= 116) {
-                size = 'XL';
-            } else if (bust <= 118 && waist <= 98 && hips <= 124) {
-                size = 'XXL';
-            } else if (bust <= 126 && waist <= 106 && hips <= 132) {
-                size = '3XL';
+                sizeFields.querySelector('#shoeSize').parentElement.classList.remove('hidden');
             } else {
-                size = '4XL';
+                sizeFields.querySelectorAll('input').forEach(el => el.parentElement.classList.remove('hidden'));
             }
-
-            document.getElementById('sizeRecommendation').innerText = `Recommended Size: ${size}`;
-            document.getElementById('personalizedAdvice').innerText = 
-                `For ${gender} ${productType}, this size offers the best fit according to EU standards.`;
+            sizeFields.classList.remove('hidden');
         }
     });
     </script>
