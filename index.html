@@ -1,7 +1,105 @@
-<div id="gentevra-size-assistant"></div>
-<script>
-    document.getElementById('gentevra-size-assistant').innerHTML = `
-        <iframe src="https://gentevra.github.io/Gentevra" 
-                width="100%" height="800px" style="border:none;"></iframe>
-    `;
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentevra Size Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <div id="gentevra-size-assistant" class="p-4 max-w-3xl mx-auto"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sizeAssistant = document.getElementById('gentevra-size-assistant');
+        
+        sizeAssistant.innerHTML = `
+            <div class="bg-gray-50 shadow-md rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Gentevra Size Assistant</h2>
+                <p class="mb-6 text-gray-600">Find your perfect size quickly and accurately with our professional size guide.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-3 rounded-md w-full">
+                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-3 rounded-md w-full">
+                    <input type="text" placeholder="Bust (cm)" id="bust" class="border border-gray-300 p-3 rounded-md w-full">
+                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-3 rounded-md w-full">
+                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-3 rounded-md w-full">
+                    <input type="text" placeholder="Age" id="age" class="border border-gray-300 p-3 rounded-md w-full">
+                </div>
+
+                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white py-3 rounded-md shadow-md text-base font-semibold hover:bg-blue-700 transition">
+                    Calculate My Size
+                </button>
+
+                <p id="sizeRecommendation" class="mt-6 text-xl font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-2 text-base font-medium text-gray-700"></p>
+
+                <div class="mt-8 bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold mb-2">Size Chart (EU Standard)</h3>
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="p-2 font-medium text-gray-700">Size</th>
+                                <th class="p-2 font-medium text-gray-700">Bust (cm)</th>
+                                <th class="p-2 font-medium text-gray-700">Waist (cm)</th>
+                                <th class="p-2 font-medium text-gray-700">Hips (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-2">S</td>
+                                <td class="p-2">84-88</td>
+                                <td class="p-2">64-68</td>
+                                <td class="p-2">88-92</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="p-2">M</td>
+                                <td class="p-2">89-94</td>
+                                <td class="p-2">69-74</td>
+                                <td class="p-2">93-98</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">L</td>
+                                <td class="p-2">95-100</td>
+                                <td class="p-2">75-80</td>
+                                <td class="p-2">99-104</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="p-2">XL</td>
+                                <td class="p-2">101-106</td>
+                                <td class="p-2">81-86</td>
+                                <td class="p-2">105-110</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+
+        window.recommendSize = function() {
+            const height = parseInt(document.getElementById('height').value);
+            const weight = parseInt(document.getElementById('weight').value);
+            const bust = parseInt(document.getElementById('bust').value);
+            const waist = parseInt(document.getElementById('waist').value);
+            const hips = parseInt(document.getElementById('hips').value);
+
+            let size = 'M';
+            if (bust <= 88 && waist <= 68 && hips <= 92) {
+                size = 'S';
+            } else if (bust <= 94 && waist <= 74 && hips <= 98) {
+                size = 'M';
+            } else if (bust <= 100 && waist <= 80 && hips <= 104) {
+                size = 'L';
+            } else {
+                size = 'XL';
+            }
+            
+            document.getElementById('sizeRecommendation').innerText = `Recommended Size: ${size}`;
+            document.getElementById('personalizedAdvice').innerText = 
+                `This size is based on EU standards, ensuring a great fit for your measurements.`;
+        }
+    });
+    </script>
+
+</body>
+</html>
