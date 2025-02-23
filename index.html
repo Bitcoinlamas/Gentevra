@@ -1,7 +1,80 @@
-<div id="gentevra-size-assistant"></div>
-<script>
-    document.getElementById('gentevra-size-assistant').innerHTML = `
-        <iframe src="https://gentevra.github.io/Gentevra" 
-                width="100%" height="600px" style="border:none;"></iframe>
-    `;
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentevra Size Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <div id="gentevra-size-assistant" class="p-4 max-w-2xl mx-auto"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sizeAssistant = document.getElementById('gentevra-size-assistant');
+        
+        sizeAssistant.innerHTML = `
+            <div class="bg-gray-50 shadow-md rounded-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Gentevra Size Assistant</h2>
+                <p class="mb-4 text-gray-600">Select your measurements and product type to find the perfect fit.</p>
+
+                <div class="grid grid-cols-1 gap-4 mb-4">
+                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Bust (cm)" id="bust" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-2 rounded-md w-full">
+                    <select id="productType" class="border p-2 rounded-md w-full">
+                        <option value="">Select Product Type</option>
+                        <option value="shirt">Shirt</option>
+                        <option value="pants">Pants</option>
+                        <option value="dress">Dress</option>
+                        <option value="coat">Coat</option>
+                        <option value="shoes">Shoes</option>
+                        <option value="jacket">Jacket</option>
+                        <option value="cardigan">Cardigan</option>
+                        <option value="polo">Poloshirt</option>
+                        <option value="jeans">Jeans</option>
+                        <option value="skirt">Skirt</option>
+                        <option value="blouse">Blouse</option>
+                    </select>
+                </div>
+
+                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white py-2 rounded-md shadow-md text-sm font-semibold hover:bg-blue-700 transition">
+                    Calculate My Size
+                </button>
+
+                <p id="sizeRecommendation" class="mt-4 text-lg font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-2 text-sm font-medium text-gray-700"></p>
+
+                <div class="mt-6 bg-white p-4 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold mb-2">Comprehensive Size Chart (XXS - 4XL)</h3>
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="p-2 font-medium text-gray-700">Size</th>
+                                <th class="p-2 font-medium text-gray-700">Bust (cm)</th>
+                                <th class="p-2 font-medium text-gray-700">Waist (cm)</th>
+                                <th class="p-2 font-medium text-gray-700">Hips (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="p-2">XXS</td><td class="p-2">76-80</td><td class="p-2">56-60</td><td class="p-2">82-86</td></tr>
+                            <tr class="bg-gray-100"><td class="p-2">XS</td><td class="p-2">81-84</td><td class="p-2">61-64</td><td class="p-2">87-90</td></tr>
+                            <tr><td class="p-2">S</td><td class="p-2">85-88</td><td class="p-2">65-68</td><td class="p-2">91-94</td></tr>
+                            <tr class="bg-gray-100"><td class="p-2">M</td><td class="p-2">89-94</td><td class="p-2">69-74</td><td class="p-2">95-100</td></tr>
+                            <tr><td class="p-2">L</td><td class="p-2">95-102</td><td class="p-2">75-82</td><td class="p-2">101-108</td></tr>
+                            <tr class="bg-gray-100"><td class="p-2">XL</td><td class="p-2">103-110</td><td class="p-2">83-90</td><td class="p-2">109-116</td></tr>
+                            <tr><td class="p-2">XXL</td><td class="p-2">111-118</td><td class="p-2">91-98</td><td class="p-2">117-124</td></tr>
+                            <tr class="bg-gray-100"><td class="p-2">3XL</td><td class="p-2">119-126</td><td class="p-2">99-106</td><td class="p-2">125-132</td></tr>
+                            <tr><td class="p-2">4XL</td><td class="p-2">127-134</td><td class="p-2">107-114</td><td class="p-2">133-140</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+    });
+    </script>
+
+</body>
+</html>
