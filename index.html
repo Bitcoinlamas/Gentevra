@@ -20,7 +20,7 @@
                     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
                     <h2 class="text-xl font-extrabold text-gray-800 ml-2">Gentevra Size Assistant</h2>
                 </div>
-                <p class="mb-3 text-sm text-gray-600">Discover your perfect fit with our AI-powered size assistant!</p>
+                <p class="mb-3 text-sm text-gray-600">Experience personalized size recommendations with AI-powered precision!</p>
 
                 <div class="grid grid-cols-1 gap-2 mb-4">
                     <select id="gender" class="border p-2 rounded-md w-full text-sm bg-gray-100 shadow-sm" onchange="showProductSelection()">
@@ -48,36 +48,20 @@
                         </select>
                     </div>
 
-                    <div id="preferenceFields" class="hidden grid grid-cols-1 gap-2">
-                        <select id="fitPreference" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
-                            <option value="">👗 Preferred Fit</option>
-                            <option value="slim">Slim Fit</option>
-                            <option value="regular">Regular Fit</option>
-                            <option value="loose">Loose Fit</option>
-                        </select>
-                        <select id="materialPreference" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
-                            <option value="">🧵 Material Preference</option>
-                            <option value="cotton">Cotton</option>
-                            <option value="silk">Silk</option>
-                            <option value="wool">Wool</option>
-                            <option value="synthetic">Synthetic</option>
-                        </select>
-                        <select id="occasion" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
-                            <option value="">🎯 Occasion</option>
-                            <option value="casual">Casual</option>
-                            <option value="business">Business</option>
-                            <option value="evening">Evening</option>
-                            <option value="sport">Sport</option>
-                        </select>
+                    <div id="sizeFields" class="hidden grid grid-cols-1 gap-2">
+                        <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
                     </div>
-
-                    <button onclick="recommendSize()" class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 rounded-md text-sm font-semibold hover:from-green-500 hover:to-blue-600 transition-all">
-                        🔍 Get My Perfect Size
-                    </button>
-
-                    <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-green-600"></p>
-                    <p id="personalizedAdvice" class="mt-1 text-sm font-medium text-gray-700"></p>
                 </div>
+
+                <button onclick="recommendSize()" class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 rounded-md text-sm font-semibold hover:from-green-500 hover:to-blue-600 transition-all">
+                    🔍 Get My Perfect Size
+                </button>
+
+                <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-1 text-sm font-medium text-gray-700"></p>
             </div>
         `;
 
@@ -86,9 +70,23 @@
         }
 
         window.showSizeFields = function() {
-            document.getElementById('preferenceFields').classList.remove('hidden');
-        }
+            const productType = document.getElementById('productType').value;
+            const sizeFields = document.getElementById('sizeFields');
 
+            sizeFields.querySelectorAll('input').forEach(el => el.parentElement.classList.add('hidden'));
+
+            if (productType === 'shoes') {
+                sizeFields.querySelector('#shoeSize').parentElement.classList.remove('hidden');
+            } else if (productType === 'accessory') {
+                sizeFields.classList.add('hidden');
+            } else {
+                sizeFields.querySelector('#bust').parentElement.classList.remove('hidden');
+                sizeFields.querySelector('#waist').parentElement.classList.remove('hidden');
+                sizeFields.querySelector('#hips').parentElement.classList.remove('hidden');
+            }
+
+            sizeFields.classList.remove('hidden');
+        }
     });
     </script>
 
