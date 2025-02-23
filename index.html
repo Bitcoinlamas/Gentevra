@@ -7,25 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-white">
-    <div id="gentevra-size-assistant" class="p-4 max-w-xl mx-auto"></div>
+    <div id="gentevra-size-assistant" class="p-4 max-w-sm mx-auto"></div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const sizeAssistant = document.getElementById('gentevra-size-assistant');
         
         sizeAssistant.innerHTML = `
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Gentevra Size Assistant</h2>
-                <p class="mb-4 text-gray-600">Get the perfect size recommendation for every product category.</p>
+            <div class="bg-white shadow-lg rounded-md p-4">
+                <h2 class="text-lg font-bold text-gray-800 mb-2">Gentevra Size Assistant</h2>
+                <p class="mb-4 text-sm text-gray-600">Find your perfect fit in seconds!</p>
 
-                <div class="grid grid-cols-1 gap-4 mb-4">
-                    <select id="gender" class="border p-2 rounded-md w-full">
-                        <option value="">Select Gender</option>
+                <div class="grid grid-cols-1 gap-2 mb-4">
+                    <select id="gender" class="border p-2 rounded-md w-full text-sm">
+                        <option value="">Gender</option>
                         <option value="male">Men</option>
                         <option value="female">Women</option>
                     </select>
-                    <select id="productType" class="border p-2 rounded-md w-full">
-                        <option value="">Select Product Type</option>
+                    <select id="productType" class="border p-2 rounded-md w-full text-sm">
+                        <option value="">Product Type</option>
                         <option value="shirt">Shirt</option>
                         <option value="pants">Pants</option>
                         <option value="dress">Dress</option>
@@ -40,20 +40,18 @@
                         <option value="suit">Suit</option>
                         <option value="accessory">Accessory</option>
                     </select>
-                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Bust/Chest (cm)" id="bust" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Shoe Size (EU)" id="shoeSize" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm">
+                    <input type="text" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm">
+                    <input type="text" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm">
+                    <input type="text" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm">
                 </div>
 
-                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white py-2 rounded-md shadow-md text-sm font-semibold hover:bg-blue-700 transition">
-                    Calculate My Size
+                <button onclick="recommendSize()" class="w-full bg-blue-600 text-white py-2 rounded-md text-sm font-semibold hover:bg-blue-700 transition">
+                    Get My Size
                 </button>
 
-                <p id="sizeRecommendation" class="mt-4 text-lg font-semibold text-green-600"></p>
-                <p id="personalizedAdvice" class="mt-2 text-sm font-medium text-gray-700"></p>
+                <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-green-600"></p>
+                <p id="personalizedAdvice" class="mt-1 text-sm font-medium text-gray-700"></p>
             </div>
         `;
 
