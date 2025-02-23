@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
-<body class="bg-gradient-to-br from-[#F2ECE4] to-white">
+<body class="bg-gradient-to-br from-white to-gray-50">
     <div id="gentevra-size-assistant" class="p-4 max-w-xs mx-auto"></div>
 
     <script>
@@ -15,23 +15,22 @@
         const sizeAssistant = document.getElementById('gentevra-size-assistant');
         
         sizeAssistant.innerHTML = `
-            <div class="bg-white shadow-2xl rounded-3xl p-4 backdrop-blur-md bg-opacity-90 transition-transform transform hover:scale-105 border border-[#D4AF37]">
+            <div class="bg-white shadow-2xl rounded-3xl p-4 backdrop-blur-md bg-opacity-90 transition-transform transform hover:scale-105">
                 <div class="flex items-center mb-3">
                     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent" speed="1" style="width: 50px; height: 50px;" loop autoplay></lottie-player>
-                    <h2 class="text-xl font-extrabold text-[#004225] ml-2">Gentevra Size Assistant</h2>
+                    <h2 class="text-xl font-extrabold text-gray-800 ml-2">Gentevra Size Assistant</h2>
                 </div>
-                <p class="mb-3 text-sm text-[#004225] font-serif">Discover your perfect fit with our assistant!</p>
-                <p class="mb-3 text-xs text-gray-500 italic">„Willkommen in der Welt von Gentevra – wo Ihr Einkauf zum Luxus-Erlebnis wird.“</p>
+                <p class="mb-3 text-sm text-gray-600">Discover your perfect fit with our assistant!</p>
 
                 <div class="grid grid-cols-1 gap-2 mb-4">
-                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-[#F2ECE4] shadow-sm text-[#004225]" onchange="showProductSelection()">
+                    <select id="gender" class="border p-2 rounded-md w-full text-sm bg-gray-100 shadow-sm" onchange="showProductSelection()">
                         <option value="">👫 Select Gender</option>
                         <option value="male">👨 Men</option>
                         <option value="female">👩 Women</option>
                     </select>
 
                     <div id="productSelection" class="hidden">
-                        <select id="productType" class="border p-2 rounded-md w-full text-sm bg-[#F2ECE4] shadow-sm text-[#004225]" onchange="showSizeFields()">
+                        <select id="productType" class="border p-2 rounded-md w-full text-sm bg-gray-100 shadow-sm" onchange="showSizeFields()">
                             <option value="">🛍️ Select Product Type</option>
                             <option value="shirt">👕 Shirt</option>
                             <option value="pants">👖 Pants</option>
@@ -48,18 +47,18 @@
                     </div>
 
                     <div id="sizeFields" class="hidden grid grid-cols-1 gap-2">
-                        <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm text-[#004225]">
-                        <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm text-[#004225]">
-                        <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm text-[#004225]">
-                        <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm text-[#004225]">
+                        <input type="number" placeholder="Bust/Chest (cm)" id="bust" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Waist (cm)" id="waist" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Hips (cm)" id="hips" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
+                        <input type="number" placeholder="Shoe Size (EU)" id="shoeSize" class="border p-2 rounded-md w-full text-sm bg-white shadow-sm">
                     </div>
                 </div>
 
-                <button onclick="recommendSize()" class="w-full bg-gradient-to-r from-[#D4AF37] to-[#004225] text-white py-2 rounded-md text-sm font-semibold hover:from-[#E0C06D] hover:to-[#006B39] transition-all shadow-lg">
+                <button onclick="recommendSize()" class="w-full bg-gradient-to-r from-green-300 to-blue-500 text-white py-2 rounded-md text-sm font-semibold hover:from-green-400 hover:to-blue-600 transition-all">
                     🔍 Find My Size
                 </button>
 
-                <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-[#004225]"></p>
+                <p id="sizeRecommendation" class="mt-4 text-md font-semibold text-green-600"></p>
                 <p id="personalizedAdvice" class="mt-1 text-sm font-medium text-gray-700"></p>
             </div>
         `;
