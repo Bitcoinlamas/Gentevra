@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-white">
-    <div id="gentevra-size-assistant" class="p-4 max-w-lg mx-auto"></div>
+    <div id="gentevra-size-assistant" class="p-4 max-w-xl mx-auto"></div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -16,14 +16,14 @@
         sizeAssistant.innerHTML = `
             <div class="bg-white shadow-md rounded-lg p-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">Gentevra Size Assistant</h2>
-                <p class="mb-4 text-gray-600">Calculate your perfect size for any fashion product.</p>
+                <p class="mb-4 text-gray-600">Get the perfect size recommendation for every product category.</p>
 
                 <div class="grid grid-cols-1 gap-4 mb-4">
-                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Bust (cm)" id="bust" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-2 rounded-md w-full">
-                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-2 rounded-md w-full">
+                    <select id="gender" class="border p-2 rounded-md w-full">
+                        <option value="">Select Gender</option>
+                        <option value="male">Men</option>
+                        <option value="female">Women</option>
+                    </select>
                     <select id="productType" class="border p-2 rounded-md w-full">
                         <option value="">Select Product Type</option>
                         <option value="shirt">Shirt</option>
@@ -37,7 +37,15 @@
                         <option value="jeans">Jeans</option>
                         <option value="skirt">Skirt</option>
                         <option value="blouse">Blouse</option>
+                        <option value="suit">Suit</option>
+                        <option value="accessory">Accessory</option>
                     </select>
+                    <input type="text" placeholder="Height (cm)" id="height" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Weight (kg)" id="weight" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Bust/Chest (cm)" id="bust" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Waist (cm)" id="waist" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Hips (cm)" id="hips" class="border border-gray-300 p-2 rounded-md w-full">
+                    <input type="text" placeholder="Shoe Size (EU)" id="shoeSize" class="border border-gray-300 p-2 rounded-md w-full">
                 </div>
 
                 <button onclick="recommendSize()" class="w-full bg-blue-600 text-white py-2 rounded-md shadow-md text-sm font-semibold hover:bg-blue-700 transition">
@@ -46,41 +54,21 @@
 
                 <p id="sizeRecommendation" class="mt-4 text-lg font-semibold text-green-600"></p>
                 <p id="personalizedAdvice" class="mt-2 text-sm font-medium text-gray-700"></p>
-
-                <div class="mt-6 bg-gray-50 p-4 rounded-lg shadow-sm">
-                    <h3 class="text-lg font-bold mb-2">Size Chart (XXS - 4XL)</h3>
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-gray-200">
-                                <th class="p-2 font-medium text-gray-700">Size</th>
-                                <th class="p-2 font-medium text-gray-700">Bust (cm)</th>
-                                <th class="p-2 font-medium text-gray-700">Waist (cm)</th>
-                                <th class="p-2 font-medium text-gray-700">Hips (cm)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${['XXS','XS','S','M','L','XL','XXL','3XL','4XL'].map((size, i) => `
-                                <tr class="${i % 2 === 0 ? 'bg-white' : 'bg-gray-100'}">
-                                    <td class="p-2">${size}</td>
-                                    <td class="p-2">${70 + i * 10}-${75 + i * 10}</td>
-                                    <td class="p-2">${50 + i * 10}-${55 + i * 10}</td>
-                                    <td class="p-2">${80 + i * 10}-${85 + i * 10}</td>
-                                </tr>`).join('')}
-                        </tbody>
-                    </table>
-                </div>
             </div>
         `;
 
         window.recommendSize = function() {
-            const height = parseInt(document.getElementById('height').value);
-            const weight = parseInt(document.getElementById('weight').value);
+            const gender = document.getElementById('gender').value;
+            const productType = document.getElementById('productType').value;
             const bust = parseInt(document.getElementById('bust').value);
             const waist = parseInt(document.getElementById('waist').value);
             const hips = parseInt(document.getElementById('hips').value);
+            const shoeSize = parseInt(document.getElementById('shoeSize').value);
 
             let size = 'M';
-            if (bust <= 80 && waist <= 60 && hips <= 86) {
+            if (productType === 'shoes') {
+                size = `EU ${shoeSize}, US ${shoeSize - 33}, UK ${shoeSize - 34}`;
+            } else if (bust <= 80 && waist <= 60 && hips <= 86) {
                 size = 'XXS';
             } else if (bust <= 84 && waist <= 64 && hips <= 90) {
                 size = 'XS';
@@ -102,7 +90,7 @@
 
             document.getElementById('sizeRecommendation').innerText = `Recommended Size: ${size}`;
             document.getElementById('personalizedAdvice').innerText = 
-                `This size is based on EU standards, ensuring a great fit for your measurements.`;
+                `For ${gender} ${productType}, this size offers the best fit according to EU standards.`;
         }
     });
     </script>
